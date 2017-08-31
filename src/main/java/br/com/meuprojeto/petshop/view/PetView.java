@@ -92,12 +92,12 @@ public class PetView extends JFrame {
 		contentPane.add(txtNomePet);
 
 		textField = new JTextField();
-		textField.setBounds(142, 123, 309, 20);
+		textField.setBounds(130, 123, 309, 20);
 		contentPane.add(textField);
 		textField.setColumns(10);
 
 		textField_1 = new JTextField();
-		textField_1.setBounds(142, 156, 316, 20);
+		textField_1.setBounds(130, 157, 316, 20);
 		contentPane.add(textField_1);
 		textField_1.setColumns(10);
 
@@ -111,7 +111,7 @@ public class PetView extends JFrame {
 		lblEspcie.setVisible(false);
 
 		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(94, 61, 290, 20);
+		comboBox.setBounds(130, 61, 290, 20);
 		contentPane.add(comboBox);
 		comboBox.setVisible(false);
 
