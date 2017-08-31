@@ -11,5 +11,6 @@ public interface IEspecieDao {
 	public void excluiEspecie(EspecieModel pet) throws SQLException;
 	public EspecieModel consultaEspecie(EspecieModel pet) throws SQLException;
 	public List<EspecieModel> consultaPet()throws SQLException; 
+	public int proximoId() throws SQLException;
 
 }

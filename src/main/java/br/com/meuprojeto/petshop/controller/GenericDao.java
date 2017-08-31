@@ -12,7 +12,7 @@ public class GenericDao implements IGenericDao {
 				String connectionUrl = "jdbc:sqlserver://localhost:1433;" + "databaseName=PET_SHOP_BASE";
 		try {
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver").newInstance();
-			conec = DriverManager.getConnection(connectionUrl, "sa", "123mudar");
+			conec = DriverManager.getConnection(connectionUrl, "Regiane", "teste");
 		
 			System.out.println("Conexão Okay =)");
 			conec.close();

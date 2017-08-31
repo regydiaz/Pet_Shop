@@ -23,10 +23,11 @@ public class EspecieDAO  implements IEspecieDao{
 		PreparedStatement ps = c.prepareStatement(sql);
 		ps.setInt(1,pet.getId());
 		ps.setString(2,pet.getNome_Pet());
-		ps.setString(3, pet.getNome_Dono());
+		ps.setString(3, pet.getEspecie_Pet());
+		ps.setString(4, pet.getNome_Dono());
+		ps.setString(5, pet.getFone_Dono());
 		ps.execute();
 		ps.close();
-		// inserir os metodos de especie e fone do dono
 		
 	}
 
@@ -35,10 +36,11 @@ public class EspecieDAO  implements IEspecieDao{
 		PreparedStatement ps = c.prepareStatement(sql);
 		ps.setString(1,pet.getNome_Pet());
 		ps.setString(2, pet.getNome_Dono());
-		ps.setInt(3,pet.getId());
+		ps.setString(3, pet.getEspecie_Pet());
+		ps.setString(4, pet.getFone_Dono());
+		ps.setInt(5,pet.getId());
 		ps.execute();
 		ps.close();
-		// inserir os metodos de especie e fone do dono
 		
 		
 	}
@@ -61,25 +63,44 @@ public class EspecieDAO  implements IEspecieDao{
 		if(rs.next()){
 			pet.setId(rs.getInt("ID_PET"));
 			pet.setNome_Dono(rs.getString("NOME_DONO"));
-			pet.setNome_Pet(rs.getString("NOME_PET")); // tá faltando os outros elementos
-		}return pet;	
+			pet.setNome_Pet(rs.getString("NOME_PET"));
+			pet.setEspecie_Pet(rs.getString("ESPECIE_PET"));
+			pet.setFone_Dono(rs.getString("FONE_DONO"));
+		}
+		rs.close();
+		ps.close();
+		return pet;	
 	}
 
 	public List<EspecieModel> consultaPet() throws SQLException {
-		List<EspecieModel> especiemodel = new ArrayList<EspecieModel>();
-		String sql = "Select ID_PET, NOME_PET, ESPECIE_PET, NOME_DONO,FONE_DONO from PETS";
+		List<EspecieModel> listaEspecie = new ArrayList<EspecieModel>();
+		String sql = "Select ID_PET, NOME_PET, ESPECIE_PET, NOME_DONO,FONE_DONO from PETS Where ID = ?";
 		PreparedStatement ps = c.prepareStatement(sql);
 		ResultSet rs = ps.executeQuery();
 		while(rs.next()){
-			EspecieModel especie = new EspecieModel();
-			//especie.setId(id);
-
-			
+			EspecieModel pet = new EspecieModel();
+			pet.setId(rs.getInt("ID_PET"));
+			pet.setNome_Dono(rs.getString("NOME_DONO"));
+			pet.setNome_Pet(rs.getString("NOME_PET"));
+			pet.setEspecie_Pet(rs.getString("ESPECIE_PET"));
+			pet.setFone_Dono(rs.getString("FONE_DONO"));
+			listaEspecie.add(pet);
 		}
+		rs.close();
+		ps.close();
+		return listaEspecie;	
 
-		
-		// TODO Auto-generated method stub
-		return null;
+	}
+
+	public int proximoId() throws SQLException {
+		String sql = "SELECT MAX(ID) +1 as proximo_idfrom PETS";
+		PreparedStatement ps = c.prepareStatement(sql);
+		ResultSet rs = ps.executeQuery();
+		if(rs.next()){
+			return rs.getInt("proximo_id");
+		}else{
+		return 1;
+		}
 	}
 
 
