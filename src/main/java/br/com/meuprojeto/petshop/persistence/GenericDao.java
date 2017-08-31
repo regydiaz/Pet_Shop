@@ -1,21 +1,20 @@
-package br.com.meuprojeto.petshop.controller;
+package br.com.meuprojeto.petshop.persistence;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class GenericDao implements IGenericDao {
-	
+
 	private Connection conec;
-	
-	public Connection getConnection(){
-				String connectionUrl = "jdbc:sqlserver://localhost:1433;" + "databaseName=PET_SHOP_BASE";
+
+	public Connection getConnection() {
+		String connectionUrl = "jdbc:sqlserver://localhost:1433;" + "databaseName=PET_SHOP_BASE;"+"Trusted_Connection=True;";
 		try {
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver").newInstance();
-			conec = DriverManager.getConnection(connectionUrl, "Regiane", "teste");
-		
+			conec = DriverManager.getConnection(connectionUrl);
+
 			System.out.println("Conexão Okay =)");
-			conec.close();
 		} catch (SQLException ex) {
 			System.out.println("SQLException: " + ex.getMessage());
 			System.out.println("SQLState: " + ex.getSQLState());
@@ -24,8 +23,10 @@ public class GenericDao implements IGenericDao {
 		}
 		return conec;
 	}
+
+	private void finnaly() throws SQLException {
+		conec.close();
+
 	}
-	
 
-
-
+}

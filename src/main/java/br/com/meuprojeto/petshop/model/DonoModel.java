@@ -4,10 +4,14 @@ public class DonoModel {
 	private int id;
 	private String nome_Dono;
 	private String nome_Pet;
-	private String celular;
-	private String cep;
-	
+	private String especie_Pet;
 
+	public String getEspecie_Pet() {
+		return especie_Pet;
+	}
+	public void setEspecie_Pet(String especie_Pet) {
+		this.especie_Pet = especie_Pet;
+	}
 	public int getId() {
 		return id;
 	}
@@ -26,21 +30,10 @@ public class DonoModel {
 	public void setNome_Pet(String nome_Pet) {
 		this.nome_Pet = nome_Pet;
 	}
-	public String getCelular() {
-		return celular;
-	}
-	public void setCelular(String celular) {
-		this.celular = celular;
-	}
-	public String getCep() {
-		return cep;
-	}
-	public void setCep(String cep) {
-		this.cep = cep;
-	}
+
 	@Override
 	public String toString() {
-		return this.nome_Dono;
+		return this.nome_Pet;
 	}
 
 }

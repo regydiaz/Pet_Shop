@@ -10,6 +10,7 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 import br.com.meuprojeto.petshop.model.EspecieModel;
+import br.com.meuprojeto.petshop.persistence.EspecieDAO;
 
 public class EspecieController implements IEspecieController{
 	private JComboBox<EspecieModel> comboBox;

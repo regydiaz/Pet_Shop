@@ -35,19 +35,14 @@ public class ComboEspecieController implements ActionListener {
 			if (!rdbtnExcluir.isSelected()){
 				EspecieModel esp = (EspecieModel) comboBox.getSelectedItem();
 				preencheCampos(esp);
-				 
 			}
 		}
-
-		
 	}
 
 	private void preencheCampos(EspecieModel esp) {
 		txID.setText(String.valueOf(esp.getId()));
 		textField.setText(String.valueOf(esp.getNome_Pet()));
 		textField_1.setText(String.valueOf(esp.getNome_Dono()));
-		
-		
 	}
 
 }

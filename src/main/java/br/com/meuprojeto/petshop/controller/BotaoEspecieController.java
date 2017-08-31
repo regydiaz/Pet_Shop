@@ -11,6 +11,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 
 import br.com.meuprojeto.petshop.model.EspecieModel;
+import br.com.meuprojeto.petshop.persistence.EspecieDAO;
 
 public class BotaoEspecieController implements ActionListener {
 
@@ -100,8 +101,6 @@ public class BotaoEspecieController implements ActionListener {
 			e.printStackTrace();
 		}
 	}
-
-	
 
 	private void exclui(EspecieModel esp) {
 		try {

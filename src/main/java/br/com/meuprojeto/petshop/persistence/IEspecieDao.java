@@ -1,4 +1,4 @@
-package br.com.meuprojeto.petshop.controller;
+package br.com.meuprojeto.petshop.persistence;
 
 import java.sql.SQLException;
 import java.util.List;

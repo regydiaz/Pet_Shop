@@ -12,10 +12,10 @@ public class TesteConnection {
 
 	public static void main(String[] args) throws ClassNotFoundException, InstantiationException {
 
-		String connectionUrl = "jdbc:sqlserver://localhost:1433;" + "databaseName=PET_SHOP_BASE";
+		String connectionUrl = "jdbc:sqlserver://LP0766//MSSQLSERVER02:1480;" + "databaseName=PET_SHOP_BASE;"+"Integrated Security=True";
 		try {
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver").newInstance();
-			Connection conec = DriverManager.getConnection(connectionUrl, "sa", "123mudar");
+			Connection conec = DriverManager.getConnection(connectionUrl);
 			
 			System.out.println("Conexão Okay =)");
 		} catch (SQLException ex) {
