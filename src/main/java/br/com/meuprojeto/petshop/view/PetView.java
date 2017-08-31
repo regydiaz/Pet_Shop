@@ -12,8 +12,13 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import br.com.meuprojeto.petshop.controller.BotaoEspecieController;
+import br.com.meuprojeto.petshop.controller.ComboEspecieController;
 import br.com.meuprojeto.petshop.controller.EspecieController;
 import br.com.meuprojeto.petshop.controller.RadioEspecieController;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.JScrollPane;
 
 public class PetView extends JFrame {
 
@@ -21,6 +26,7 @@ public class PetView extends JFrame {
 	public JTextField txID;
 	public JTextField textField;
 	public JTextField textField_1;
+	private JTable tblEspecie;
 
 	/**
 	 * Launch the application.
@@ -113,13 +119,37 @@ public class PetView extends JFrame {
 		btnEnviar.setBounds(32, 219, 89, 23);
 		contentPane.add(btnEnviar);
 
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 277, 558, 121);
+		contentPane.add(scrollPane);
+
+		tblEspecie = new JTable();
+		scrollPane.setViewportView(tblEspecie);
+		DefaultTableModel modelo = new DefaultTableModel(new Object[][] {}, 
+				new String[] { "ID", "Nome Pet", "Nome Dono" });
+		tblEspecie.setModel(modelo);
+		tblEspecie.getColumnModel().getColumn(1).setPreferredWidth(279);
+		tblEspecie.getColumnModel().getColumn(2).setPreferredWidth(269);
+
 		EspecieController eController = new EspecieController(txID);
 		eController.proximoId();
+		
+		eController = new EspecieController(tblEspecie);
+		eController.tableEspecie();
 
 		RadioEspecieController rmController = new RadioEspecieController(txID, textField, textField_1, lblId,
 				txtNomePet, lblNomeDono, lblEspcie, rdbtnIncluir, rdbtnAlterar, rdbtnExcluir, btnEnviar, comboBox);
 		rdbtnAlterar.addActionListener(rmController);
 		rdbtnIncluir.addActionListener(rmController);
 		rdbtnExcluir.addActionListener(rmController);
+
+		ComboEspecieController cmController = new ComboEspecieController(txID, textField, textField_1, comboBox,
+				rdbtnExcluir);
+		comboBox.addActionListener(cmController);
+
+		BotaoEspecieController btnController = new BotaoEspecieController(txID, textField, textField_1, comboBox,
+				rdbtnExcluir, rdbtnAlterar, rdbtnIncluir, tblEspecie);
+		btnEnviar.addActionListener(btnController);
+
 	}
 }
