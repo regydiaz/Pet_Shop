@@ -25,7 +25,7 @@ public class PetsDAO  implements IPetsDao{
 	}
 
 	public void inserePet(Pets pet) throws SQLException {
-		String sql = "INSERT INTO PET (ID_PET, NOME_PET, ESPECIE_PET) VALUES (?,?,?)";
+		String sql = "INSERT INTO dbo.PETS (ID_PET, NOME_PET, ESPECIE_PET) VALUES (?,?,?)";
 		PreparedStatement ps = c.prepareStatement(sql);
 		ps.setInt(1,pet.getId_Pet());
 		ps.setString(2,pet.getNome_Pet());
@@ -36,7 +36,7 @@ public class PetsDAO  implements IPetsDao{
 	}
 
 	public void atualizaPet(Pets pet) throws SQLException {
-		String sql = "UPDATE PET SET  NOME_PET = ?, ESPECIE_PET = ? WHERE ID=?";
+		String sql = "UPDATE PETS SET  NOME_PET = ?, ESPECIE_PET = ? WHERE ID=?";
 		PreparedStatement ps = c.prepareStatement(sql);
 		ps.setString(1,pet.getNome_Pet());
 		ps.setString(2, pet.getEspecie_Pet());
@@ -48,7 +48,7 @@ public class PetsDAO  implements IPetsDao{
 	}
 
 	public void excluiPet(Pets pet) throws SQLException {
-		String sql = "delete Pet where id = ?";
+		String sql = "delete Pets where id = ?";
 		PreparedStatement ps = c.prepareStatement(sql);
 		ps.setInt(1,pet.getId_Pet());
 		ps.execute();
@@ -59,7 +59,7 @@ public class PetsDAO  implements IPetsDao{
 	 * O método abaixo retorna um ResultSet, que armazena a informação temporariamente
 	 */
 	public Pets consultaPet(Pets pet) throws SQLException {
-		String sql = "Select ID_PET, NOME_PET, ESPECIE_PET from PET Where ID = ?";
+		String sql = "Select ID_PET, NOME_PET, ESPECIE_PET from PETS Where ID = ?";
 		PreparedStatement ps = c.prepareStatement(sql);
 		ps.setInt(1,pet.getId_Pet());
 		ResultSet rs = ps.executeQuery();
@@ -78,7 +78,7 @@ public class PetsDAO  implements IPetsDao{
 
 	public List<Pets> consultaPet() throws SQLException {
 		List<Pets> listaPets = new ArrayList<Pets>();
-		String sql = "SELECT ID_PET, NOME_PET, ESPECIE_PET FROM PET";
+		String sql = "SELECT ID_PET, NOME_PET, ESPECIE_PET FROM PETS";
 		PreparedStatement ps = c.prepareStatement(sql);
 		ResultSet rs = ps.executeQuery();
 		while(rs.next()){
@@ -99,7 +99,7 @@ public class PetsDAO  implements IPetsDao{
 	 */
 
 	public int proximoId() throws SQLException {
-		String sql = "SELECT MAX(ID_PET) +1 AS proximo_id FROM PET";
+		String sql = "SELECT MAX(ID_PET) +1 AS proximo_id FROM PETS";
 		PreparedStatement ps = c.prepareStatement(sql);
 		ResultSet rs = ps.executeQuery();
 		if(rs.next()){

@@ -11,25 +11,31 @@ import javax.swing.table.DefaultTableModel;
 
 import br.com.meuprojeto.petshop.model.Pets;
 import br.com.meuprojeto.petshop.persistence.PetsDAO;
-
-public class EspecieController implements IEspecieController{
+/**
+ * 
+ * @author Inmetrics
+ * Classe com contrutores
+ */
+public class PetsController implements IPetsController{
 	private JComboBox<Pets> comboBox;
 	private JTextField tfId;
 	private JTable tblEspecie;
 	
-	public EspecieController(JComboBox<Pets>comboBox) {
+	public PetsController(JComboBox<Pets> comboBox) {
 		this.comboBox = comboBox;
 			}
-	public EspecieController(JTextField tfId){
+	
+	public PetsController(JTextField tfId){
 		this.tfId = tfId;
 		
 	}
-	public EspecieController(JComboBox<Pets>comboBox,JTextField tfId ){
+	
+	public PetsController(JComboBox<Pets> comboBox, JTextField tfId ){
 		this.comboBox = comboBox;
 		this.tfId = tfId;
 	
 	}
-	public EspecieController(JTable tblEspecie) {
+	public PetsController(JTable tblEspecie) {
 		this.tblEspecie = tblEspecie;
 		
 	}
@@ -37,8 +43,8 @@ public class EspecieController implements IEspecieController{
 	public void proximoId() {
 
 		try {
-			PetsDAO eDao = new PetsDAO();
-			tfId.setText(String.valueOf(eDao.proximoId()));
+			PetsDAO pDao = new PetsDAO();
+			tfId.setText(String.valueOf(pDao.proximoId()));
 		} catch (ClassNotFoundException  e) {
 			JOptionPane.showMessageDialog(null, e.getMessage(), "ERRO", JOptionPane.ERROR_MESSAGE);
 			e.printStackTrace();
@@ -47,19 +53,18 @@ public class EspecieController implements IEspecieController{
 		}
 	}
 
-	public void listaEspecie() {
+	public void listaPets() {
 		try {
-			PetsDAO eDao = new PetsDAO();
-			List<Pets> listaEspecie = eDao.consultaPet();
-			if(comboBox.getItemCount() >0){
+			PetsDAO pDao = new PetsDAO();
+			List<Pets> listaPets = pDao.consultaPet();
+			if(comboBox.getItemCount() > 0){
 				comboBox.removeAllItems();
 				
 			}
-			if (listaEspecie != null){
-				for (Pets especie : listaEspecie){
-					comboBox.addItem(especie);
+			if (listaPets != null){
+				for (Pets p : listaPets){
+					comboBox.addItem(p);
 				}
-				
 			}
 		} catch (ClassNotFoundException  e) {
 			JOptionPane.showMessageDialog(null, e.getMessage(), "ERRO", JOptionPane.ERROR_MESSAGE);
@@ -67,11 +72,10 @@ public class EspecieController implements IEspecieController{
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
-		
 	}
+	
 	@Override
-	public void tableEspecie() {
+	public void tablePets() {
 		if (tblEspecie != null){
 			DefaultTableModel modelo = (DefaultTableModel) tblEspecie.getModel();
 			if (modelo.getRowCount()>0){

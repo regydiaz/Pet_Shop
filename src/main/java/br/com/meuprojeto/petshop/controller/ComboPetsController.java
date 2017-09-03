@@ -1,47 +1,46 @@
 package br.com.meuprojeto.petshop.controller;
-
+/**
+ * Classe q conecta o persistence ao view
+ */
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 import br.com.meuprojeto.petshop.model.Pets;
 
-public class ComboEspecieController implements ActionListener {
+public class ComboPetsController implements ActionListener {
 	
-	JTextField txID, textField, textField_1;
+	JTextField tfId, tfNomePet, tfEspecie;
 	JComboBox<Pets> comboBox;
 	JRadioButton  rdbtnExcluir;
 	
-	public ComboEspecieController(JTextField txID, JTextField textField, JTextField textField_1,
+	public ComboPetsController(JTextField tfId, JTextField tfNomePet, JTextField tfEspecie,
 			JComboBox<Pets> comboBox,
 			JRadioButton  rdbtnExcluir){
-		this.txID = txID;
-		this.textField = textField;
-		this.textField_1 = textField_1;
+		this.tfId = tfId;
+		this.tfNomePet = tfNomePet;
+		this.tfEspecie = tfEspecie;
 		
 		this.comboBox = comboBox;
 		
 		this.rdbtnExcluir = rdbtnExcluir;	
-		
 	}
 
 	public void actionPerformed(ActionEvent e) {
 		if(comboBox.getItemCount() > 0){
 			if (!rdbtnExcluir.isSelected()){
-				Pets esp = (Pets) comboBox.getSelectedItem();
-				preencheCampos(esp);
+				Pets pets = (Pets) comboBox.getSelectedItem();
+				preencheCampos(pets);
 			}
 		}
 	}
 
 	private void preencheCampos(Pets esp) {
-		txID.setText(String.valueOf(esp.getId_Pet()));
-		textField.setText(String.valueOf(esp.getNome_Pet()));
+		tfId.setText(String.valueOf(esp.getId_Pet()));
+		tfNomePet.setText(String.valueOf(esp.getNome_Pet()));
+		tfEspecie.setText(String.valueOf(esp.getEspecie_Pet()));
 	}
-
 }

@@ -9,6 +9,9 @@ package br.com.meuprojeto.petshop.model;
 
 public class Pets {
 	private int id_Pet;
+	private String nome_Pet;
+	private String especie_Pet;
+
 	
 	public int getId_Pet() {
 		return id_Pet;
@@ -16,10 +19,6 @@ public class Pets {
 	public void setId_Pet(int id_Pet) {
 		this.id_Pet = id_Pet;
 	}
-
-	private String nome_Pet;
-	private String especie_Pet;
-	
 
 	public String getNome_Pet() {
 		return nome_Pet;

@@ -13,20 +13,20 @@ import javax.swing.JTextField;
 import br.com.meuprojeto.petshop.model.Pets;
 import br.com.meuprojeto.petshop.persistence.PetsDAO;
 
-public class BotaoEspecieController implements ActionListener {
+public class BotaoPetsController implements ActionListener {
 
-	private JTextField txID, textField, textField_1;
+	private JTextField tfId, tfNomePet, tfEspecie;
 	private JComboBox<Pets> comboBox;
 	private JRadioButton rdbtnExcluir, rdbtnAlterar, rdbtnIncluir;
-	private JTable tblEspecie;
+	private JTable tblPet;
 
-	public BotaoEspecieController(JTextField txID, JTextField textField, JTextField textField_1,
+	public BotaoPetsController(JTextField tfId, JTextField tfNomePet, JTextField tfEspecie,
 			JComboBox<Pets> comboBox,
-			JRadioButton rdbtnExcluir, JRadioButton rdbtnAlterar, JRadioButton rdbtnIncluir, JTable tblEspecie ) {
+			JRadioButton rdbtnExcluir, JRadioButton rdbtnAlterar, JRadioButton rdbtnIncluir, JTable tblPet ) {
 		
-		this.txID = txID;
-		this.textField = textField;
-		this.textField_1 = textField_1;
+		this.tfId = tfId;
+		this.tfNomePet = tfNomePet;
+		this.tfEspecie = tfEspecie;
 		
 		this.comboBox = comboBox;
 		
@@ -34,7 +34,7 @@ public class BotaoEspecieController implements ActionListener {
 		this.rdbtnAlterar = rdbtnAlterar;
 		this.rdbtnIncluir = rdbtnIncluir;
 		
-		this.tblEspecie = tblEspecie;
+		this.tblPet = tblPet;
 
 	}
 
@@ -47,22 +47,22 @@ public class BotaoEspecieController implements ActionListener {
 		if(rdbtnExcluir.isSelected()){
 			exclui(esp);
 		}else{
-			esp.setId_Pet(Integer.parseInt(txID.getText()));
-			esp.setNome_Pet(textField.getText());
+			esp.setId_Pet(Integer.parseInt(tfId.getText()));
+			esp.setNome_Pet(tfNomePet.getText());
+			esp.setEspecie_Pet(tfEspecie.getText());
 			if(rdbtnIncluir.isSelected()){
 				cadastro(esp);
 			}else{
 				atualiza(esp);
-				
 			}
 		}
 
 	}
 	private void limpaCampos(){
-		textField.setText("");
-		textField_1.setText("");
+		tfNomePet.setText("");
+		tfEspecie.setText("");
 		if(!rdbtnIncluir.isSelected()){
-			txID.setText("");
+			tfId.setText("");
 			
 		}
 	}
@@ -73,10 +73,10 @@ public class BotaoEspecieController implements ActionListener {
 			eDao.atualizaPet(esp);
 			JOptionPane.showMessageDialog(null, "Espécie atualizada com sucesso",
 					"Sucesso", JOptionPane.INFORMATION_MESSAGE);
-			IEspecieController eController = new EspecieController(comboBox);
-			eController.listaEspecie();
-			eController = new EspecieController(tblEspecie);
-			eController.tableEspecie();
+			IPetsController eController = new PetsController(comboBox);
+			eController.listaPets();
+			eController = new PetsController(tblPet);
+			eController.tablePets();
 			limpaCampos();
 		} catch (ClassNotFoundException | SQLException e) {
 			JOptionPane.showMessageDialog(null, e.getMessage(), "ERRO", JOptionPane.ERROR_MESSAGE);			
@@ -90,10 +90,10 @@ public class BotaoEspecieController implements ActionListener {
 			eDao.inserePet(esp);
 			JOptionPane.showMessageDialog(null, "Espécie inserida com sucesso",
 					"Sucesso", JOptionPane.INFORMATION_MESSAGE);
-			EspecieController eController = new EspecieController(txID);
+			PetsController eController = new PetsController(tfId);
 			eController.proximoId();
-			eController = new EspecieController(tblEspecie);
-			eController.tableEspecie();
+			eController = new PetsController(tblPet);
+			eController.tablePets();
 			limpaCampos();
 		} catch (ClassNotFoundException | SQLException e) {
 		JOptionPane.showMessageDialog(null, e.getMessage(), "ERRO", JOptionPane.ERROR_MESSAGE);			
@@ -107,10 +107,10 @@ public class BotaoEspecieController implements ActionListener {
 			eDao.excluiPet(esp);
 			JOptionPane.showMessageDialog(null, "Espécie excluida com sucesso",
 					"Sucesso", JOptionPane.INFORMATION_MESSAGE);
-			IEspecieController eController = new EspecieController(comboBox);
-			eController.listaEspecie();
-			eController = new EspecieController(tblEspecie);
-			eController.tableEspecie();
+			IPetsController eController = new PetsController(comboBox);
+			eController.listaPets();
+			eController = new PetsController(tblPet);
+			eController.tablePets();
 		} catch (ClassNotFoundException | SQLException e) {
 			JOptionPane.showMessageDialog(null, e.getMessage(), "ERRO", JOptionPane.ERROR_MESSAGE);			
 			e.printStackTrace();
