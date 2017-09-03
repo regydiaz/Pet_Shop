@@ -16,6 +16,8 @@ import br.com.meuprojeto.petshop.controller.BotaoEspecieController;
 import br.com.meuprojeto.petshop.controller.ComboEspecieController;
 import br.com.meuprojeto.petshop.controller.EspecieController;
 import br.com.meuprojeto.petshop.controller.RadioEspecieController;
+import br.com.meuprojeto.petshop.model.Pets;
+
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
@@ -23,9 +25,9 @@ import javax.swing.JScrollPane;
 public class PetView extends JFrame {
 
 	private JPanel contentPane;
-	public JTextField txID;
-	public JTextField textField;
-	public JTextField textField_1;
+	public JTextField tfID;
+	public JTextField tfNomePet;
+	public JTextField tfEspecie;
 	private JTable tblEspecie;
 
 	/**
@@ -81,36 +83,36 @@ public class PetView extends JFrame {
 		lblId.setBounds(32, 95, 46, 14);
 		contentPane.add(lblId);
 
-		txID = new JTextField();
-		txID.setEditable(false);
-		txID.setBounds(130, 92, 109, 20);
-		contentPane.add(txID);
-		txID.setColumns(10);
+		tfID = new JTextField();
+		tfID.setEditable(false);
+		tfID.setBounds(130, 92, 109, 20);
+		contentPane.add(tfID);
+		tfID.setColumns(10);
 
 		JLabel txtNomePet = new JLabel("Nome PET");
 		txtNomePet.setBounds(32, 126, 109, 14);
 		contentPane.add(txtNomePet);
 
-		textField = new JTextField();
-		textField.setBounds(130, 123, 309, 20);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		tfNomePet = new JTextField();
+		tfNomePet.setBounds(130, 123, 309, 20);
+		contentPane.add(tfNomePet);
+		tfNomePet.setColumns(10);
 
-		textField_1 = new JTextField();
-		textField_1.setBounds(130, 157, 316, 20);
-		contentPane.add(textField_1);
-		textField_1.setColumns(10);
+		tfEspecie = new JTextField();
+		tfEspecie.setBounds(130, 157, 316, 20);
+		contentPane.add(tfEspecie);
+		tfEspecie.setColumns(10);
 
-		JLabel lblNomeDono = new JLabel("Nome Dono");
+		JLabel lblNomeDono = new JLabel("Espécie");
 		lblNomeDono.setBounds(32, 159, 86, 17);
 		contentPane.add(lblNomeDono);
 
-		JLabel lblEspcie = new JLabel("Espécie");
-		lblEspcie.setBounds(32, 64, 46, 14);
-		contentPane.add(lblEspcie);
-		lblEspcie.setVisible(false);
+		JLabel lblPets = new JLabel("PETS");
+		lblPets.setBounds(32, 64, 46, 14);
+		contentPane.add(lblPets);
+		lblPets.setVisible(false);
 
-		JComboBox comboBox = new JComboBox();
+		JComboBox<Pets> comboBox = new JComboBox<Pets>();
 		comboBox.setBounds(130, 61, 290, 20);
 		contentPane.add(comboBox);
 		comboBox.setVisible(false);
@@ -131,23 +133,23 @@ public class PetView extends JFrame {
 		tblEspecie.getColumnModel().getColumn(1).setPreferredWidth(279);
 		tblEspecie.getColumnModel().getColumn(2).setPreferredWidth(269);
 
-		EspecieController eController = new EspecieController(txID);
+		EspecieController eController = new EspecieController(tfID);
 		eController.proximoId();
 		
 		eController = new EspecieController(tblEspecie);
 		eController.tableEspecie();
 
-		RadioEspecieController rmController = new RadioEspecieController(txID, textField, textField_1, lblId,
-				txtNomePet, lblNomeDono, lblEspcie, rdbtnIncluir, rdbtnAlterar, rdbtnExcluir, btnEnviar, comboBox);
+		RadioEspecieController rmController = new RadioEspecieController(tfID, tfNomePet, tfEspecie, lblId,
+				txtNomePet, lblNomeDono, lblPets, rdbtnIncluir, rdbtnAlterar, rdbtnExcluir, btnEnviar, comboBox);
 		rdbtnAlterar.addActionListener(rmController);
 		rdbtnIncluir.addActionListener(rmController);
 		rdbtnExcluir.addActionListener(rmController);
 
-		ComboEspecieController cmController = new ComboEspecieController(txID, textField, textField_1, comboBox,
+		ComboEspecieController cmController = new ComboEspecieController(tfID, tfNomePet, tfEspecie, comboBox,
 				rdbtnExcluir);
 		comboBox.addActionListener(cmController);
 
-		BotaoEspecieController btnController = new BotaoEspecieController(txID, textField, textField_1, comboBox,
+		BotaoEspecieController btnController = new BotaoEspecieController(tfID, tfNomePet, tfEspecie, comboBox,
 				rdbtnExcluir, rdbtnAlterar, rdbtnIncluir, tblEspecie);
 		btnEnviar.addActionListener(btnController);
 

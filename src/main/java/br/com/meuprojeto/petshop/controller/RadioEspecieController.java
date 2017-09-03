@@ -9,18 +9,18 @@ import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
-import br.com.meuprojeto.petshop.model.EspecieModel;
+import br.com.meuprojeto.petshop.model.Pets;
 
 public class RadioEspecieController implements ActionListener {
 	JTextField txID, textField, textField_1;
 	JLabel lblId, txtNomePet, lblNomeDono, lblEspcie;
 	JRadioButton rdbtnIncluir, rdbtnAlterar, rdbtnExcluir;
 	JButton btnEnviar;
-	JComboBox<EspecieModel> comboBox;
+	JComboBox<Pets> comboBox;
 
 	public RadioEspecieController(JTextField txID, JTextField textField, JTextField textField_1, JLabel lblId,
 			JLabel txtNomePet, JLabel lblNomeDono, JLabel lblEspcie, JRadioButton rdbtnIncluir,
-			JRadioButton rdbtnAlterar, JRadioButton rdbtnExcluir, JButton btnEnviar, JComboBox<EspecieModel> comboBox) {
+			JRadioButton rdbtnAlterar, JRadioButton rdbtnExcluir, JButton btnEnviar, JComboBox<Pets> comboBox) {
 
 		this.txID = txID;
 		this.textField = textField;

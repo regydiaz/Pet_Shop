@@ -10,18 +10,18 @@ import javax.swing.JRadioButton;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
-import br.com.meuprojeto.petshop.model.EspecieModel;
-import br.com.meuprojeto.petshop.persistence.EspecieDAO;
+import br.com.meuprojeto.petshop.model.Pets;
+import br.com.meuprojeto.petshop.persistence.PetsDAO;
 
 public class BotaoEspecieController implements ActionListener {
 
 	private JTextField txID, textField, textField_1;
-	private JComboBox<EspecieModel> comboBox;
+	private JComboBox<Pets> comboBox;
 	private JRadioButton rdbtnExcluir, rdbtnAlterar, rdbtnIncluir;
 	private JTable tblEspecie;
 
 	public BotaoEspecieController(JTextField txID, JTextField textField, JTextField textField_1,
-			JComboBox<EspecieModel> comboBox,
+			JComboBox<Pets> comboBox,
 			JRadioButton rdbtnExcluir, JRadioButton rdbtnAlterar, JRadioButton rdbtnIncluir, JTable tblEspecie ) {
 		
 		this.txID = txID;
@@ -40,16 +40,15 @@ public class BotaoEspecieController implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
 		
-		EspecieModel esp = new EspecieModel();
+		Pets esp = new Pets();
 		if(comboBox.getSelectedItem()!= null){
-			esp = (EspecieModel) comboBox.getSelectedItem();
+			esp = (Pets) comboBox.getSelectedItem();
 		}
 		if(rdbtnExcluir.isSelected()){
 			exclui(esp);
 		}else{
-			esp.setId(Integer.parseInt(txID.getText()));
+			esp.setId_Pet(Integer.parseInt(txID.getText()));
 			esp.setNome_Pet(textField.getText());
-			esp.setNome_Dono(textField_1.getText());
 			if(rdbtnIncluir.isSelected()){
 				cadastro(esp);
 			}else{
@@ -68,10 +67,10 @@ public class BotaoEspecieController implements ActionListener {
 		}
 	}
 	
-	private void atualiza(EspecieModel esp) {
+	private void atualiza(Pets esp) {
 		try {
-			EspecieDAO eDao = new EspecieDAO();
-			eDao.atualizaEspecie(esp);
+			PetsDAO eDao = new PetsDAO();
+			eDao.atualizaPet(esp);
 			JOptionPane.showMessageDialog(null, "Espécie atualizada com sucesso",
 					"Sucesso", JOptionPane.INFORMATION_MESSAGE);
 			IEspecieController eController = new EspecieController(comboBox);
@@ -85,10 +84,10 @@ public class BotaoEspecieController implements ActionListener {
 		}
 	}
 
-	private void cadastro(EspecieModel esp) {
+	private void cadastro(Pets esp) {
 		try {
-			EspecieDAO eDao = new EspecieDAO();
-			eDao.insereEspecie(esp);
+			PetsDAO eDao = new PetsDAO();
+			eDao.inserePet(esp);
 			JOptionPane.showMessageDialog(null, "Espécie inserida com sucesso",
 					"Sucesso", JOptionPane.INFORMATION_MESSAGE);
 			EspecieController eController = new EspecieController(txID);
@@ -102,10 +101,10 @@ public class BotaoEspecieController implements ActionListener {
 		}
 	}
 
-	private void exclui(EspecieModel esp) {
+	private void exclui(Pets esp) {
 		try {
-			EspecieDAO eDao = new EspecieDAO();
-			eDao.excluiEspecie(esp);
+			PetsDAO eDao = new PetsDAO();
+			eDao.excluiPet(esp);
 			JOptionPane.showMessageDialog(null, "Espécie excluida com sucesso",
 					"Sucesso", JOptionPane.INFORMATION_MESSAGE);
 			IEspecieController eController = new EspecieController(comboBox);

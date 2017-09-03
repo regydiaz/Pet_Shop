@@ -9,22 +9,22 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-import br.com.meuprojeto.petshop.model.EspecieModel;
-import br.com.meuprojeto.petshop.persistence.EspecieDAO;
+import br.com.meuprojeto.petshop.model.Pets;
+import br.com.meuprojeto.petshop.persistence.PetsDAO;
 
 public class EspecieController implements IEspecieController{
-	private JComboBox<EspecieModel> comboBox;
+	private JComboBox<Pets> comboBox;
 	private JTextField tfId;
 	private JTable tblEspecie;
 	
-	public EspecieController(JComboBox<EspecieModel>comboBox) {
+	public EspecieController(JComboBox<Pets>comboBox) {
 		this.comboBox = comboBox;
 			}
 	public EspecieController(JTextField tfId){
 		this.tfId = tfId;
 		
 	}
-	public EspecieController(JComboBox<EspecieModel>comboBox,JTextField tfId ){
+	public EspecieController(JComboBox<Pets>comboBox,JTextField tfId ){
 		this.comboBox = comboBox;
 		this.tfId = tfId;
 	
@@ -37,7 +37,7 @@ public class EspecieController implements IEspecieController{
 	public void proximoId() {
 
 		try {
-			EspecieDAO eDao = new EspecieDAO();
+			PetsDAO eDao = new PetsDAO();
 			tfId.setText(String.valueOf(eDao.proximoId()));
 		} catch (ClassNotFoundException  e) {
 			JOptionPane.showMessageDialog(null, e.getMessage(), "ERRO", JOptionPane.ERROR_MESSAGE);
@@ -49,14 +49,14 @@ public class EspecieController implements IEspecieController{
 
 	public void listaEspecie() {
 		try {
-			EspecieDAO eDao = new EspecieDAO();
-			List<EspecieModel> listaEspecie = eDao.consultaPet();
+			PetsDAO eDao = new PetsDAO();
+			List<Pets> listaEspecie = eDao.consultaPet();
 			if(comboBox.getItemCount() >0){
 				comboBox.removeAllItems();
 				
 			}
 			if (listaEspecie != null){
-				for (EspecieModel especie : listaEspecie){
+				for (Pets especie : listaEspecie){
 					comboBox.addItem(especie);
 				}
 				
@@ -77,15 +77,14 @@ public class EspecieController implements IEspecieController{
 			if (modelo.getRowCount()>0){
 				modelo.setRowCount(0);
 			}
-			EspecieDAO eDao;
+			PetsDAO eDao;
 			try {
-				eDao = new EspecieDAO();
-				List<EspecieModel> listaEspecie = eDao.consultaPet();
-				for(EspecieModel e : listaEspecie){
+				eDao = new PetsDAO();
+				List<Pets> listaEspecie = eDao.consultaPet();
+				for(Pets e : listaEspecie){
 					Object[] linha = new Object[3];
-					linha[0] = e.getId();
+					linha[0] = e.getId_Pet();
 					linha[1] = e.getNome_Pet();
-					linha[1] = e.getNome_Dono();
 					modelo.addRow(linha);
 					
 				}

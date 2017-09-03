@@ -9,16 +9,16 @@ import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
-import br.com.meuprojeto.petshop.model.EspecieModel;
+import br.com.meuprojeto.petshop.model.Pets;
 
 public class ComboEspecieController implements ActionListener {
 	
 	JTextField txID, textField, textField_1;
-	JComboBox<EspecieModel> comboBox;
+	JComboBox<Pets> comboBox;
 	JRadioButton  rdbtnExcluir;
 	
 	public ComboEspecieController(JTextField txID, JTextField textField, JTextField textField_1,
-			JComboBox<EspecieModel> comboBox,
+			JComboBox<Pets> comboBox,
 			JRadioButton  rdbtnExcluir){
 		this.txID = txID;
 		this.textField = textField;
@@ -33,16 +33,15 @@ public class ComboEspecieController implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if(comboBox.getItemCount() > 0){
 			if (!rdbtnExcluir.isSelected()){
-				EspecieModel esp = (EspecieModel) comboBox.getSelectedItem();
+				Pets esp = (Pets) comboBox.getSelectedItem();
 				preencheCampos(esp);
 			}
 		}
 	}
 
-	private void preencheCampos(EspecieModel esp) {
-		txID.setText(String.valueOf(esp.getId()));
+	private void preencheCampos(Pets esp) {
+		txID.setText(String.valueOf(esp.getId_Pet()));
 		textField.setText(String.valueOf(esp.getNome_Pet()));
-		textField_1.setText(String.valueOf(esp.getNome_Dono()));
 	}
 
 }
