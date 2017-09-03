@@ -128,11 +128,12 @@ public class PetView extends JFrame {
 		tblPet = new JTable();
 		scrollPane.setViewportView(tblPet);
 		DefaultTableModel modelo = new DefaultTableModel(new Object[][] {}, 
-				new String[] { "ID_PET", "NOME_PET", "ESPECIE_PET" });
+				new String[] { "ID", "NOME PET", "ESPECIE PET" });
 		tblPet.setModel(modelo);
 		tblPet.getColumnModel().getColumn(1).setPreferredWidth(279);
 		tblPet.getColumnModel().getColumn(2).setPreferredWidth(269);
-
+		tblPet.getColumnModel().getColumn(2).setPreferredWidth(268);
+	
 		PetsController pController = new PetsController(tfID);
 		pController.proximoId();
 		

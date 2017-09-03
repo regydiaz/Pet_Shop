@@ -63,7 +63,6 @@ public class BotaoPetsController implements ActionListener {
 		tfEspecie.setText("");
 		if(!rdbtnIncluir.isSelected()){
 			tfId.setText("");
-			
 		}
 	}
 	
@@ -71,7 +70,7 @@ public class BotaoPetsController implements ActionListener {
 		try {
 			PetsDAO eDao = new PetsDAO();
 			eDao.atualizaPet(esp);
-			JOptionPane.showMessageDialog(null, "Espécie atualizada com sucesso",
+			JOptionPane.showMessageDialog(null, "PET atualizad0 com sucesso =)",
 					"Sucesso", JOptionPane.INFORMATION_MESSAGE);
 			IPetsController eController = new PetsController(comboBox);
 			eController.listaPets();
@@ -88,7 +87,7 @@ public class BotaoPetsController implements ActionListener {
 		try {
 			PetsDAO eDao = new PetsDAO();
 			eDao.inserePet(esp);
-			JOptionPane.showMessageDialog(null, "Espécie inserida com sucesso",
+			JOptionPane.showMessageDialog(null, "PET inserido com sucesso =)",
 					"Sucesso", JOptionPane.INFORMATION_MESSAGE);
 			PetsController eController = new PetsController(tfId);
 			eController.proximoId();
@@ -105,7 +104,7 @@ public class BotaoPetsController implements ActionListener {
 		try {
 			PetsDAO eDao = new PetsDAO();
 			eDao.excluiPet(esp);
-			JOptionPane.showMessageDialog(null, "Espécie excluida com sucesso",
+			JOptionPane.showMessageDialog(null, "PET excluido com sucesso",
 					"Sucesso", JOptionPane.INFORMATION_MESSAGE);
 			IPetsController eController = new PetsController(comboBox);
 			eController.listaPets();
