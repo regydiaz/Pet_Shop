@@ -70,7 +70,7 @@ public class BotaoPetsController implements ActionListener {
 		try {
 			PetsDAO eDao = new PetsDAO();
 			eDao.atualizaPet(esp);
-			JOptionPane.showMessageDialog(null, "PET atualizad0 com sucesso =)",
+			JOptionPane.showMessageDialog(null, "PET atualizado com sucesso =)",
 					"Sucesso", JOptionPane.INFORMATION_MESSAGE);
 			IPetsController eController = new PetsController(comboBox);
 			eController.listaPets();
