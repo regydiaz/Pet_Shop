@@ -3,6 +3,7 @@ package br.com.meuprojeto.petshop.persistence;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.logging.Logger;
 
 public class GenericDao implements IGenericDao {
 
@@ -13,8 +14,10 @@ public class GenericDao implements IGenericDao {
 		try {
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver").newInstance();
 			conec = DriverManager.getConnection(connectionUrl,"sa","123mudar");
-
-			System.out.println("Conexão Okay =)");
+			Logger logger = Logger.getAnonymousLogger();
+			logger.info("Conexão Okay =)");
+			
+			//System.out.println("Conexão Okay =)");
 		} catch (SQLException ex) {
 			System.out.println("SQLException: " + ex.getMessage());
 			System.out.println("SQLState: " + ex.getSQLState());

@@ -43,8 +43,6 @@ public class PetsDAO  implements IPetsDao{
 		ps.setInt(3,pet.getId_Pet());
 		ps.execute();
 		ps.close();
-		
-		
 	}
 
 	public void excluiPet(Pets pet) throws SQLException {
@@ -72,6 +70,7 @@ public class PetsDAO  implements IPetsDao{
 		ps.close();
 		return pet;	
 	}
+	
 	/**
 	 * Consulta o conjunto todo dos PETS, através de um ArraList
 	 */
